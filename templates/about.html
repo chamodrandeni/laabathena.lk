@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"> <span>LAABA</span>thena.lk</a>
+
+    <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="{{ url_for('vehicles') }}">vehicles</a>
+        <a href="{{ url_for('index') }}">Predict</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div id="login-btn">
+        <a href="/logout" class="btn">Log out</a>
+        <i class="far fa-user"></i>
+    </div>
+
+</header> 
+
+<section class="vehicles" id="vehicles">
+
+    
+
+    <div class="swiper vehicles-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="../static/image/vehicle-1.png" alt="">
+                <h1 class="heading"> About<span>Us</span> </h1>
+                <p class="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem accusantium, quaerat dolor possimus, delectus iure vel magni ipsum consectetur sed impedit amet sapiente? Iste iusto quis cumque accusantium excepturi, ab voluptate doloribus omnis possimus quam placeat repudiandae reiciendis praesentium, nesciunt vitae sint, dicta ducimus dolorum magni ea rerum animi cum? Asperiores laboriosam sit distinctio nisi repellat perspiciatis, velit ut totam cumque molestias sunt consectetur culpa, non rem temporibus officiis dolore! Odio minus quisquam aliquid officia optio minima et explicabo dignissimos delectus quos libero molestias ullam nesciunt, vitae maiores, quaerat labore. Sequi mollitia odit consectetur magni et. In et voluptas a.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="footer" id="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-arrow-right"></i> home </a>
+            <a href="#"> <i class="{{ url_for('vehicles') }}"></i> vehicles </a>
+            <a href="{{ url_for('index') }}"> <i class="fas fa-arrow-right"></i> Pradit </a>
+            <a href="{{ url_for('about') }}"> <i class="fas fa-arrow-right"></i> About Us </a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> 011 231 4567 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +97 769456820 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> laabathena.lk@gmail.com </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> No.205/D, Colombo road, Negombo </a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+        </div>
+
+    </div>
+
+    <div class="credit"> LAABAthena.lk &copy; Copyright 2022 </div>
+
+</section>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="../static/js/script.js"></script>
+
+</body>
+</html>

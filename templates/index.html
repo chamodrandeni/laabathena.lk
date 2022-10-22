@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Predict Car Price</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <style>
+        #bodyl{
+            background: url(../static/image/oad.jpg) no-repeat center center;
+            background-size: cover;
+            height: 700px;
+        }
+        #sec1{
+            margin: auto;
+        }
+        #car-main{
+            position: absolute;
+            animation: anm2 10s;
+            margin-top: 500px;
+        }
+        #car{
+            position: absolute;
+        }
+        #wheel1{
+            height: 75px;
+            width: 75px;
+            margin-top: 105px;
+            margin-left: 80px;
+            position: absolute;
+            animation: anm1 10s;
+        }
+        #wheel2{
+            height: 75px;
+            width: 75px;
+            margin-top: 105px;
+            margin-left: 390px;
+            position: absolute;
+            animation: anm1 10s;
+        }
+        @keyframes anm1{
+            to{
+                transform: rotate(-360deg);
+        }}
+        @keyframes anm2{
+            from{
+                margin-left: 750px;
+            }
+            to{
+            margin-left: 0px
+            }
+        }
+        h2{
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form{
+            width: 500px;
+            box-shadow: 0 0 30px #000;
+            overflow: hidden;
+            padding: 50px 20px;
+            padding-top: 35px;
+            background: #000;
+        }
+        .wrap{
+            width: 540px;
+            margin: 10px auto;
+        }
+        .item{
+            width: 40%;
+            display: block;
+            float: left;
+            color: #fff;
+            padding: 5px 0; 
+            font-size: 18px;
+        }
+        .row{
+            width: 100%;
+            float: left;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .in1{
+            width: 60%;
+            padding: 5px 1%;
+            background: #EBE5E5;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .in2{
+            width: 99%;
+            background: #f3b918;
+            color: #000;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            border: 0;
+            padding: 10px 0;
+            margin: 20px .5% 0;
+            box-shadow: 0 0 3px #000;
+        }
+        .in2:hover{
+            background: #f27609;
+        }
+        .link{
+            color: #f27609;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        #reg{
+            display: none;
+        }
+        #msg{
+            display: none;
+            padding: 5px 10px;
+            margin: 10px;
+            min-height: 30px;
+        }
+        .err{
+            background: #d11919;
+            color: #fff;
+
+        }
+
+        /* Media Query */
+        @media screen and (max-width:1325px){
+            #bodyl{
+                height: 705px;
+            }
+        }
+        @media screen and (max-width:1200px){
+            #bodyl{
+                height: 765px;
+            }
+            #car-main{
+                margin-top: 542px;
+            }
+        }
+        @media screen and (max-width:595px){
+            #bodyl{
+                height: 650px;
+            }
+            .wrap{
+                width: 100%;
+                margin: 10px 2%;
+            }
+            form{
+                width: 95%;
+                padding: 50px 1;
+            }
+            #car-main{
+                display: none;
+            }
+        }
+        @media screen and (max-width:445px){
+            #bodyl{
+                height: 845px;
+            }
+            form{
+                padding: 15px 2%;
+            }
+            .item{
+                width: 100%;
+            }
+            .in1{
+                width: 96%;
+            }
+        }
+        @media screen and (max-width:320px){
+            .wrap{
+                width: 310px;
+                margin: 10px;
+            }
+        }
+    </style>
+
+</head>
+<body id="bodyl">
+    <div id="car-main">  
+        <img src="../static/image/car.png" alt="car" id="car">
+        <img src="../static/image/wheel.png" alt="wheel" id="wheel1">
+        <img src="../static/image/wheel.png" alt="wheel2" id="wheel2">
+    </div>
+    <div id="msg" class="err"></div>
+    <div class="wrap" id="log">
+        <form name="loginform" action="{{ url_for('predict') }}" method="post">
+            <h2>Pradit Your car value </h2>
+            <label class="row">
+                <span class="item">Model:</span>
+                <select class="in1" name="Model" id="Model">
+                    <option value="0">   Hyundai Tucson</option> 	        
+                    <option value="1">   Toyota Prius</option> 	        
+                    <option value="2">   Suzuki Alto</option> 	        
+                    <option value="3">   Micro Panda</option> 	        
+                    <option value="4">   Toyota Vitz</option> 	        
+                    <option value="5">   Honda Vezel</option> 	        
+                    <option value="6">   Peugeot 5008</option> 	        
+                    <option value="7">   Nissan March</option> 	        
+                    <option value="8">   Honda CRV</option> 	        
+                    <option value="9">   Toyota Hilux</option> 	        
+                    <option value="10">  Audi A5</option> 	        
+                    <option value="11">  Toyota Land Cruiser Prado</option> 	        
+                    <option value="12">  Mercedes Benz E220</option> 	        
+                    <option value="13">  BMW 520d</option> 	        
+                    <option value="14">  Toyota Other Model</option> 	        
+                    <option value="15">  Toyota Allion</option> 	        
+                    <option value="16">  Mercedes Benz C180</option> 	        
+                    <option value="17">  Mitsubishi Montero</option> 	        
+                    <option value="18">  Toyota Belta</option> 	        
+                    <option value="19">  Suzuki Maruti</option> 	        
+                    <option value="20">  Toyota Axio</option> 	        
+                    <option value="21">  Suzuki Wagon R FZ</option> 	        
+                    <option value="22">  Tata Indica</option> 	        
+                    <option value="23">  Land Rover Range Rover</option> 	        
+                    <option value="24">  Toyota Premio</option> 	        
+                    <option value="25">  Honda Civic</option> 	        
+                    <option value="26">  Suzuki Spacia</option> 	        
+                    <option value="27">  Mitsubishi L200</option> 	        
+                    <option value="28">  Mitsubishi eK Wagon</option> 	        
+                    <option value="29">  Land Rover Range Rover Sport</option> 	        
+                    <option value="30">  Nissan Sunny</option> 	        
+                    <option value="31">  Toyota Aqua</option> 	        
+                    <option value="32">  Mitsubishi Outlander</option> 	        
+                    <option value="33">  Suzuki Baleno</option> 	        
+                    <option value="34">  Audi Q3</option> 	        
+                    <option value="35">  Honda Grace</option> 	        
+                    <option value="36">  Audi A4</option> 	        
+                    <option value="37">  Audi A3</option> 	        
+                    <option value="38">  BMW X3</option> 	        
+                    <option value="39">  Toyota Rush</option> 	        
+                    <option value="40">  Kia Sorento</option> 	        
+                    <option value="41">  Suzuki Wagon R Stingray</option> 	        
+                    <option value="42">  Toyota Land Cruiser Sahara</option> 	        
+                    <option value="43">  Mitsubishi Lancer</option> 	        
+                    <option value="44">  Audi Q2</option> 	        
+                    <option value="45">  Toyota CHR</option> 	        
+                    <option value="46">  Land Rover Discovery</option> 	        
+                    <option value="47">  Kia Sportage</option> 	        
+                    <option value="48">  Hyundai Accent</option> 	        
+                    <option value="49">  Suzuki Celerio</option> 	        
+                    <option value="50">  Honda Fit</option> 	        
+                    <option value="51">  Nissan Other Model</option> 	        
+                    <option value="52">  Suzuki Swift</option> 	        
+                    <option value="53">  Honda Insight</option> 	        
+                    <option value="54">  Mitsubishi Xpander</option> 	        
+                    <option value="55">  Renault KWID</option> 	        
+                    <option value="56">  Nissan X-Trail</option> 	        
+                    <option value="57">  Suzuki Wagon R</option> 	        
+                    <option value="58">  Mercedes Benz E350</option> 	        
+                    <option value="59">  Nissan Pulsar</option> 	        
+                    <option value="60">  Suzuki Liana</option> 	        
+                    <option value="61">  Toyota Corolla</option> 	        
+                    <option value="62">  Mercedes Benz S400</option> 	        
+                    <option value="63">  Mazda Demio</option> 	        
+                    <option value="64">  Nissan Presea</option> 	        
+                    <option value="65">  Mercedes Benz S300</option> 	        
+                    <option value="66">  BMW 740Le</option> 	        
+                    <option value="67">  Suzuki Escudo</option> 	        
+                    <option value="68">  Toyota Corona</option> 	        
+                    <option value="69">  BMW X1</option> 	        
+                    <option value="70">  BMW 530e</option> 	        
+                    <option value="71">  Suzuki Hustler</option> 	        
+                    <option value="72">  Suzuki A-Star</option> 	        
+                    <option value="73">  Land Rover Range Rover Velar</option> 	        
+                    <option value="74">  Mercedes Benz CLA 200</option> 	        
+                    <option value="75">  Audi A8</option> 	        
+                    <option value="76">  Toyota Fortuner</option> 	        
+                    <option value="77">  Mercedes Benz CLA 180</option> 	        
+                    <option value="78">  Audi Q7</option> 	        
+                    <option value="79">  Maruti Suzuki Alto</option> 	        
+                    <option value="80">  Toyota Yaris</option> 	        
+                    <option value="81">  Mini Cooper</option> 	        
+                    <option value="82">  Toyota RAV4</option> 	        
+                    <option value="83">  Kia Picanto</option> 	        
+                    <option value="84">  Nissan Navara</option> 	        
+                    <option value="85">  MG ZS</option> 	        
+                    <option value="86">  Toyota Wigo</option> 	        
+                    <option value="87">  Honda City</option> 	        
+                    <option value="88">  BMW X5</option> 	        
+                    <option value="89">  Hyundai Sonata</option> 	        
+                    <option value="90">  Mitsubishi Pajero</option> 	        
+                    <option value="91">  Micro BAIC</option> 	        
+                    <option value="92">  Toyota Starlet</option> 	        
+                    <option value="93">  Toyota Passo</option> 	        
+                    <option value="94">  Peugeot 406</option> 	        
+                    <option value="95">  BMW 523i</option> 	        
+                    <option value="96">  Honda N-Box</option> 	        
+                    <option value="97">  Honda N-WGN</option> 	        
+                    <option value="98">  Audi A6</option> 	        
+                    <option value="99">  Toyota Vios</option> 	        
+                    <option value="100"> Mercedes Benz C200</option> 	        
+                    <option value="101"> Land Rover Defender</option> 	        
+                    <option value="102"> Suzuki Grand Vitara</option> 	        
+                    <option value="103"> Mazda Carol</option> 	        
+                    <option value="104"> Toyota Camry</option> 	        
+                    <option value="105"> Nissan Tiida</option> 	        
+                    <option value="106"> Suzuki XBee</option> 	        
+                    <option value="107"> Toyota Soluna</option> 	        
+                    <option value="108"> Nissan Bluebird</option> 	        
+                    <option value="109"> Honda Accord</option> 	        
+                    <option value="110"> BMW 740e</option> 	        
+                    <option value="111"> Suzuki Zen</option> 	        
+                    <option value="112"> Mazda 6</option> 	        
+                    <option value="113"> Toyota Harrier</option> 	        
+                    <option value="114"> Nissan Patrol</option> 	        
+                    <option value="115"> Peugeot 3008</option> 	        
+                    <option value="116"> Porsche Cayenne</option> 	        
+                    <option value="117"> Ford Ranger</option> 	        
+                    <option value="118"> Mercedes Benz C220</option> 	        
+                    <option value="119"> Toyota Roomy</option> 	        
+                    <option value="120"> BMW X2</option> 	        
+                    <option value="121"> Suzuki Wagon R FX</option> 	        
+                    <option value="122"> Nissan Dayz</option> 	        
+                    <option value="123"> Toyota IST</option> 	        
+                    <option value="124"> Tata Nano</option> 	        
+                    <option value="125"> Ford Laser</option> 	        
+                    <option value="126"> Mitsubishi Eclipse Cross</option> 	        
+                    <option value="127"> Mazda Axela</option> 	        
+                    <option value="128"> Micro Panda Cross</option> 	        
+                    <option value="129"> Jaguar XF</option> 	        
+                    <option value="130"> Micro Kyron</option> 	        
+                    <option value="131"> BMW 320d</option> 	        
+                    <option value="132"> Micro Rexton</option> 	        
+                    <option value="133"> Toyota Pixis</option> 	        
+                    <option value="134"> Mazda Familia</option> 	        
+                    <option value="135"> Hyundai Elantra</option> 	        
+                    <option value="136"> Micro MX 7</option> 	        
+                    <option value="137"> Datsun Redi Go</option> 	        
+                    <option value="138"> Mazda 3</option> 	        
+                    <option value="139"> Mercedes Benz E200</option> 	        
+                    <option value="140"> Toyota Sprinter</option> 	        
+                    <option value="141"> Audi A1</option> 	        
+                    <option value="142"> Mazda Flair</option> 	        
+                    <option value="143"> Toyota Carina</option> 	        
+                    <option value="144"> Suzuki Estilo</option> 	        
+                    <option value="145"> BMW 318i</option> 	        
+                    <option value="146"> Micro Trend</option> 	        
+                    <option value="147"> Toyota Mark</option> 	        
+                    <option value="148"> Ssang Yong Rexton</option> 	        
+                    <option value="149"> Toyota Corsa</option> 	        
+                    <option value="150"> Hyundai Grand i10</option> 	        
+                    <option value="151"> Proton Wira</option> 	        
+                    <option value="152"> Mercedes Benz E300</option> 	        
+                    <option value="153"> Maruti Suzuki 800</option> 	        
+                    <option value="154"> Nissan Dutsun</option> 	        
+                    <option value="155"> Kia Rio</option> 	        
+                    <option value="156"> Peugeot 508</option> 	        
+                    <option value="157"> Hyundai Santa Fe</option> 	        
+                    <option value="158"> Toyota Raize</option> 	        
+                    <option value="159"> Nissan Cefiro</option> 	        
+                    <option value="160"> Toyota Tank</option> 	        
+                    <option value="161"> Hyundai Eon</option> 	        
+                    <option value="162"> Honda Fit Aria</option> 	        
+                    <option value="163"> BMW ActiveHybrid 7</option> 	        
+                    <option value="164"> Honda Fit Shuttle</option> 	        
+                    <option value="165"> Isuzu Gemini</option> 	        
+                    <option value="166"> Land Rover Freelander</option> 	        
+                    <option value="167"> Maruti Suzuki Zen</option>
+                </select>
+            </label>
+            <label class="row">
+                <span class="item">Year:</span>
+                <input type="text" class="in1" required name="Year">
+            </label>
+            <label class="row">
+                <span class="item">Transmission:</span>
+                <select name="Transmission" class="in1">
+                    <option value="0">Automatic</option>
+                    <option value="1">Manual</option>
+                    <option value="2">Tiptronic</option>
+                </select>
+            </label>
+            <label class="row">
+                <span class="item">Body:</span>
+                <select name="Body" class="in1">
+                    <option value="0">SUV / 4x4</option>
+                    <option value="1">Saloon</option>
+                    <option value="2">Hatchback</option>
+                </select>
+            </label>
+            <label class="row">
+                <span class="item">Fuel:</span>
+                <select name="Fuel" class="in1">
+                    <option value="0">Petrol</option>
+                    <option value="1">Hybrid</option>
+                    <option value="2">Diesel</option>
+                </select>
+            </label>
+            <label class="row">
+                <span class="item">Capacity:</span>
+                <input type="text" class="in1" required name="Capacity">
+            </label>
+            <label class="row">
+                <span class="item">Mileage:</span>
+                <input type="text" class="in1" required name="Mileage">
+            </label>
+            <label class="row">
+                <span class="item">Fuel Price:</span>
+                <input type="text" class="in1" required name="Fuel_Price">
+            </label>
+            <label class="row">
+                <span class="item">USD rate:</span>
+                <input type="text" class="in1" required name="USD_rate">
+            </label>
+            <label class="row">
+                <span class="item">Crude Oil Price:</span>
+                <input type="text" class="in1" required name="Crude_Oil_Price">
+            </label>
+            <div class="row">
+                <input type="submit" value="Predict Car price" class="in2">
+            </div>
+        </form>
+   </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registration</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <style>
+        #car-main{
+            position: absolute;
+            animation: anm2 10s;
+            margin-top: 365px;
+        }
+        #car{
+            position: absolute;
+        }
+        #wheel1{
+            height: 75px;
+            width: 75px;
+            margin-top: 105px;
+            margin-left: 80px;
+            position: absolute;
+            animation: anm1 10s;
+        }
+        #wheel2{
+            height: 75px;
+            width: 75px;
+            margin-top: 105px;
+            margin-left: 390px;
+            position: absolute;
+            animation: anm1 10s;
+        }
+        @keyframes anm1{
+            to{
+                transform: rotate(-360deg);
+        }}
+        @keyframes anm2{
+            from{
+                margin-left: 750px;
+            }
+            to{
+            margin-left: 0px
+            }
+        }
+        h2{
+            color: #000;
+            text-transform: uppercase;
+            font-size: 25px;
+        }
+        form{
+            width: 100%;
+            box-shadow: 0 0 30px #000;
+            background: #000;
+            overflow: hidden;
+            padding: 50px 20px;
+            margin-top: 25px;
+        }
+        .wrap{
+            width: 540px;
+            margin: 10px auto;
+        }
+        .item{
+            width: 40%;
+            display: block;
+            float: left;
+            color: #fff;
+            padding: 5px 0;
+            font-size: 18px;
+        }
+        .row{
+            width: 100%;
+            float: left;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .in1{
+            width: 59%;
+            padding: 5px 1%;
+            background: #EBE5E5;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .in2{
+            width: 99%;
+            background: #f3b918;
+            color: #000;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            border: 0;
+            padding: 10px 0;
+            margin: 20px .5% 0;
+            box-shadow: 0 0 3px #000;
+        }
+        .in2:hover{
+            background: #f27609;
+        }
+        .link{
+            color: #f27609;
+            padding: 10px 0;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        #reg{
+            display: none;
+        }
+        #msg{
+            display: none;
+            padding: 5px 10px;
+            margin: 10px;
+            min-height: 30px;
+        }
+        .err{
+            background: #d11919;
+            color: #fff;
+        }
+
+        /* Media Query */
+        @media screen and (max-width:750px){
+            #car-main{
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:580px){
+            .wrap{
+                width: 100%;
+                margin: 10px 2%;
+            }
+            form{
+                width: 96%;
+                padding: 50px 2%;
+            }
+        }
+        @media screen and (max-width:445px){
+            form{
+                padding: 15px 2%;
+            }
+            .item{
+                width: 100%;
+            }
+            .in1{
+                width: 96%;
+            }
+        }
+        @media screen and (max-width:320px){
+            .wrap{
+                width: 310px;
+                margin: 10px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <header class="header">
+    
+        <a href="#" class="logo"> <span>LAABA</span>thena.lk</a>
+    
+    </header> 
+    <div id="car-main">  
+        <img src="../static/image/car.png" alt="car" id="car">
+        <img src="../static/image/wheel.png" alt="wheel" id="wheel1">
+        <img src="../static/image/wheel.png" alt="wheel2" id="wheel2">
+    </div>
+    <div id="msg" class="err"></div>
+    <div class="wrap" id="log">
+        <h2>Login</h2>
+        <form name="loginform" onsubmit="return validateLogin()" method="post" action="validate_login">
+            <label class="row">
+                <span class="item">Email</span>
+                <input type="email" class="in1" required name="email">
+            </label>
+            <label class="row">
+                <span class="item">Password</span>
+                <input type="password" class="in1" required name="password">
+            </label>
+            <div class="row">
+                <input type="submit" value="LOGIN" class="in2">
+            </div>
+        </form>
+        <div class="link" onclick="show('reg')">
+            Don't you have an account? Register
+        </div>
+   </div>
+
+   <div class="wrap" id="reg">
+    <h2>Register</h2>
+    <form onsubmit="return validateRegister()" method="post" name="registerform" action="/add_user">
+        <label class="row">
+            <span class="item">Your Name</span>
+            <input type="text" class="in1" required name="uname">
+        </label>
+        <label class="row">
+            <span class="item">Email</span>
+            <input type="email" class="in1" required name="uemail">
+        </label>
+        <label class="row">
+            <span class="item">Password</span>
+            <input type="password" class="in1" required name="password1" >
+        </label>
+        <label class="row">
+            <span class="item">Re-Enter Password</span>
+            <input type="password" class="in1" required name="password2">
+        </label>
+        <div class="row">
+            <input type="submit" value="REGISTER" class="in2">
+        </div>
+    </form>
+    <div class="link" onclick="show('log')">
+        Do you already have an account? Login
+    </div>
+    </div>
+
+<script>
+    function show(v){
+        if(v=='log'){
+            document.getElementById('reg').style.display='none';
+            document.getElementById('log').style.display='block';
+        }else{
+            document.getElementById('log').style.display='none';
+            document.getElementById('reg').style.display='block';
+        }
+    }
+
+    // validate login form
+    function validateLogin(){
+        var msg = "";
+        //email validate
+        var email = document.forms["loginform"]["email"].value;
+
+        var at_symbol = email.indexOf("@");
+        var last_dot = email.lastIndexOf(".");
+
+        if(last_dot<at_symbol) msg += "Email is Invalid <br>";
+
+        // display messages
+        if(msg !== ""){
+            document.getElementById('msg').style.display="block";
+            document.getElementById('msg').innerHTML=msg;
+            return false;
+        }
+    }
+
+    // validate registration form
+    function validateRegister(){
+        var msg = "";
+        //email validate
+        var email = document.forms["registerform"]["email"].value;
+
+        var at_symbol = email.indexOf("@");
+        var last_dot = email.lastIndexOf(".");
+
+        if(last_dot<at_symbol) msg += "Email is Invalid <br>";
+
+        // password validation
+        var pwd1 = document.forms["registerform"]["password1"].value;
+        var pwd2 = document.forms["registerform"]["password2"].value;
+
+        if(pwd1!==pwd2){
+            msg += "Password does not match with confirm password <br>";
+        }
+
+        // username validate
+        var user_name = document.forms["registerform"]["uname"].value;
+        if(user_name.trim()=="") msg += "Name is Invalid <br>";
+
+        // display messages
+        if(msg !== ""){
+            document.getElementById('msg').style.display="block";
+            document.getElementById('msg').innerHTML=msg;
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
